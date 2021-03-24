@@ -1,10 +1,12 @@
 var readlineSync=require("readline-sync");
-var username=readlineSync.question("Enter your name:");
+var chalk=require('chalk');
+var username=readlineSync.question(chalk.inverse.bold.bgBlue("Enter your name:"));
 
-console.log("Welcome to the quiz "+username+"! Lets dive into questions");
-console.log(`\nPoints to remember about the game:
+console.log("\nWelcome to the quiz "+chalk.bold.yellow(username)+"! Lets dive into questions");
+console.log( '\n'+chalk.bgYellow('Points')+ `to remember about the game:
+
  1)There are no penalties for wrong answers
- 2)For every right answer you will get +1 mark
+ 2)For every right answer you will get `+chalk.bold.green('+1')+ ` mark
  3)Just enter the option itself as answer `);
 var set=[{
   //Level 1
@@ -107,11 +109,13 @@ function play(ques,ans)
   if(userans===ans)
   {
     score++;
-    console.log("Hurray! Right Answer \n Current Score: "+score);
+    console.log(chalk.green("Hurray! Right Answer")+ `\n Current Score: `+score);
+     console.log(chalk.green('-----------------------------------------'));
   }
-  else
-  console.log("Oops! Wrong Answer \n Current Score: "+score);
-
+  else{
+    console.log(chalk.red("Oops! Wrong Answer")+ `\n Current Score: `+score);
+  console.log(chalk.red('-----------------------------------------'));
+  }
 }
 var level1=3;
 var level2=3+level1;
@@ -126,7 +130,7 @@ for(var i=0;i<set.length;i++)
   }
   else if(i==level1-1 && score==level1)
   {
-    console.log("Congrats! you have been qualified for level2 ");
+    console.log(chalk.green("\nCongrats! you have been qualified for level2 "));
   }
   else if(i==level2-1 && score!=level2)
   {
@@ -134,12 +138,12 @@ for(var i=0;i<set.length;i++)
   }
     else if(i==level2-1 && score==level2)
   {
-        console.log("Congrats! you have been qualified for level3 ");
+        console.log(chalk.green("\nCongrats! you have been qualified for level3 "));
   }
 
     else if(i==level3-1 && score==level3)
   {
-            console.log("\nCongrats! you have reached the end of game ");
+            console.log(chalk.green("\nCongrats! you have reached the end of game "));
 
   }
   else continue;
