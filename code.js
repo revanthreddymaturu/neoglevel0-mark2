@@ -155,7 +155,7 @@ var highscores=[
     highscore:10
   }
 ]
-console.log("Your total score is: "+score+"\n Thanks for playing the quiz");
+console.log("Your total score is: "+chalk.green(score)+chalk.greenBright("\n Thanks for playing the quiz"));
 
 /*if(score>=highscore)
 {
@@ -172,3 +172,4 @@ else{
 
 for(var i=0;i<highscores.length;i++)
 console.log("\nHighest score:"+highscores[i].highscore+"\n High scorers names:"+highscores[i].highscorername);
+console.log(chalk.inverse.bold.yellow("\n If you have scored more than or equal to high score shown here, send me the screenshot of the score and I will update it here."));
